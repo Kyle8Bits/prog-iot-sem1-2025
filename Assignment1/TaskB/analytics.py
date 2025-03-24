@@ -1,5 +1,4 @@
 import sqlite3
-import pandas as pd
 import matplotlib.pyplot as plt
 from matplotlib.ticker import MaxNLocator
 from matplotlib.lines import Line2D
@@ -8,17 +7,25 @@ from matplotlib.lines import Line2D
 # Connect to SQLite database
 conn = sqlite3.connect('../TaskA/climate.db')
 
-# Example: load a table into a pandas DataFrame
-df = pd.read_sql_query("SELECT * FROM temperature", conn)
+# Example: load data from the "temperature" table
+cursor = conn.cursor()
+cursor.execute("SELECT id, value FROM temperature")  # Select only the required columns
 
-# Don't forget to close the connection when done
+# Fetch all rows from the executed query
+rows = cursor.fetchall()
+
+# Close the connection
 conn.close()
 
-average = sum(df['id'])/len(df['id'])
+# Separate the data into two lists: one for 'id' and one for 'value'
+ids = [row[0] for row in rows]
+values = [row[1] for row in rows]
+
+average = sum(ids) / len(ids)
 
 # Scatter Plot
-plt.plot(df['id'], df['value'], linewidth = 4, color='black')
-plt.title('Scatter Plot Example')
+plt.plot(ids, values, linewidth=4, color='black')
+plt.title('Temperature Chart')
 
 plt.ylabel('Temperature')
 
@@ -39,5 +46,5 @@ plt.legend(handles=custom_legend, loc='upper right')
 
 
 plt.gca().xaxis.set_major_locator(MaxNLocator(integer=True))
-plt.savefig('scatter_plot.png')  # Save scatter plot as a PNG file
+plt.savefig('temperature.png')  # Save scatter plot as a PNG file
 plt.show()  # Display scatter plot

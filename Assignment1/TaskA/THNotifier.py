@@ -141,8 +141,8 @@ class SensorData:
         cursor.execute('''CREATE TABLE IF NOT EXISTS temperature (id INTEGER PRIMARY KEY, value INTEGER, zone INTEGER)''')
         cursor.execute('''CREATE TABLE IF NOT EXISTS humidity (id INTEGER PRIMARY KEY, value INTEGER, zone INTEGER)''')
 
-        cursor.execute("INSERT INTO temperature (value, zone) VALUES (?, ?)", (self.category()[0], self.temperature))
-        cursor.execute("INSERT INTO humidity (value, zone) VALUES (?, ?)", (self.category()[1], self.humidity))
+        cursor.execute("INSERT INTO temperature (value, zone) VALUES (?, ?)", (self.temperature, self.category()[0]))
+        cursor.execute("INSERT INTO humidity (value, zone) VALUES (?, ?)", (self.humidity, self.category()[1]))
 
         # Commit the changes
         conn.commit()
