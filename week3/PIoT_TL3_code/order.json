@@ -1,0 +1,24 @@
+{
+  "order_id": "ORD12345",
+  "customer": {
+    "name": "Alice Smith",
+    "email": "alice@example.com"
+  },
+  "items": [
+    {
+      "product_id": "P001",
+      "product_name": "Wireless Mouse",
+      "quantity": 2,
+      "price": 25.99
+    },
+    {
+      "product_id": "P002",
+      "product_name": "Keyboard",
+      "quantity": 1,
+      "price": 45.50
+    }
+  ],
+  "discount_applied": false,
+  "shipping_cost": 5.0,
+  "notes": null
+}
