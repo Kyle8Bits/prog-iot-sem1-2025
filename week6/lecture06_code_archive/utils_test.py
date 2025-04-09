@@ -1,0 +1,18 @@
+# Ref.: B. Slatkin, Effective Python: 125 Specific Ways to Write Better Python, 
+# 3rd ed., Addison-Wesley Professional, 2024.
+
+from unittest import TestCase, main
+from utils import to_str
+
+class UtilsTestCase(TestCase):
+    def test_to_str_bytes(self):
+        self.assertEqual("hello", to_str(b"hello"))
+
+    def test_to_str_str(self):
+        self.assertEqual("hello", to_str("hello"))
+
+    def test_failing(self):
+        self.assertEqual("incorrect", to_str("hello"))
+
+if __name__ == "__main__":
+    main()
